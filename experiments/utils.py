@@ -12,7 +12,6 @@ import json
 from pathlib import Path
 import sys
 from io import BytesIO
-import wandb
 import warnings
 
 common_parser = argparse.ArgumentParser(add_help=False, description="EquInvGP parser")
@@ -180,13 +179,10 @@ def calc_metrics(results):
     return avg_loss, avg_acc
 
 
-def model_save(model, file=None, log_to_wandb=None):
+def model_save(model, file=None):
     if file is None:
         file = BytesIO()
     torch.save({'model_state_dict': model.state_dict()}, file)
-    if log_to_wandb:
-        wandb.save(file.as_posix())
-
     return file
 
 
@@ -201,10 +197,8 @@ def model_load(model, file):
     return model
 
 
-def save_data(tensor, file, log_to_wandb=None):
+def save_data(tensor, file):
     torch.save(tensor, file)
-    if log_to_wandb:
-        wandb.save(file.as_posix())
 
 
 def load_data(file):

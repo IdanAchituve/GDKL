@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(description="CIFAR - DKL Sparse", parents=[comm
 #############################
 parser.add_argument("--dataset", type=str, choices=['cifar10', 'cifar100'],
                     default="cifar10", help="Number of training samples")
-parser.add_argument("--data-path", type=str, default="./dataset", help="Number of training samples")
+parser.add_argument("--data-path", type=str, default="./datasets", help="Number of training samples")
 parser.add_argument("--val-pct", type=float, default=0.0,
                     help="allocation to validation set from the full training set of 50K examples")
 parser.add_argument("--train-pct", type=float, default=1.0,
