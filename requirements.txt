@@ -10,11 +10,13 @@ contourpy==1.0.5
 cryptography==38.0.4
 cycler==0.11.0
 dm-tree==0.1.8
+et-xmlfile==1.1.0
 flatbuffers==23.1.21
 flit_core==3.6.0
 fonttools==4.25.0
 frozendict==2.3.4
 gast==0.4.0
+GDKL==1.0.0
 google-auth==2.16.0
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
@@ -41,6 +43,7 @@ neural-tangents==0.6.2
 numexpr==2.8.4
 numpy==1.23.5
 oauthlib==3.2.2
+openpyxl==3.1.1
 opt-einsum==3.3.0
 packaging==23.0
 pandas==1.5.2
