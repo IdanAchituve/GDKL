@@ -12,7 +12,6 @@ from experiments.utils import set_logger
 set_logger()
 
 class CIFARSubSet(Subset):
-    """Face Landmarks dataset."""
     def __getitem__(self, index):
         img, target = super().__getitem__(index)
         return img, target, index
