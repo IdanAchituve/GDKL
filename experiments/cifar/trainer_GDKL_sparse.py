@@ -52,7 +52,7 @@ parser.add_argument("--weight-var", type=float, default=5.0)
 parser.add_argument("--bias-var", type=float, default=0.2)
 parser.add_argument("--inf-widen-factor", type=int, default=5, help="widen factor in infinite WRN")
 parser.add_argument("--subset-size-pct", type=float, default=0.05, help="subset size to train prior model hps (~5%)")
-parser.add_argument("--beta", type=float, default=1.0, help="coef of data kl")
+parser.add_argument("--beta", type=float, default=0.1, help="coef of data kl")
 parser.add_argument("--neural-activation", type=str, default='Relu',
                     choices=['Relu', 'Sigmoid_like', 'Rbf', 'Sign'],
                     help="infinite network activation")
@@ -68,7 +68,7 @@ parser.add_argument("--fragment-size", type=int, default=2500)
 parser.add_argument('--multiplicative-factor', type=float,
                     default=1e-6,
                     help='multiplicative factor to scale the NNGP kernel to have an order of 100 at most. '
-                         'For cifar10 use 1e-6, and for cifar100 1e-1')
+                         'For full cifar10 use 1e-6, and for full cifar100 1e-1')
 parser.add_argument("--jitter-val", type=float, default=0.0,
                     help="jitter to add to diagonal in infinite network; needed only for cifar100 a jitter of 1e-3")
 
