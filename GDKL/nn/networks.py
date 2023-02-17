@@ -1,7 +1,5 @@
 import torch.nn as nn
 import torch.nn.functional as F
-from GDKL.nn import spectral_norm_fc, spectral_norm_conv, SpectralBatchNorm2d
-
 
 class Identity(nn.Module):
     def __init__(self, *args, **kwargs):
@@ -99,14 +97,10 @@ class WideResNet(nn.Module):
     def __init__(
         self,
         input_size=32,
-        spectral_conv=False,
-        spectral_bn=False,
         depth=28,
         widen_factor=10,
         num_classes=None,
         dropout_rate=0.3,
-        coeff=3,
-        n_power_iterations=1
     ):
         super().__init__()
 
@@ -115,34 +109,13 @@ class WideResNet(nn.Module):
         self.dropout_rate = dropout_rate
 
         def wrapped_bn(num_features):
-            if spectral_bn:
-                bn = SpectralBatchNorm2d(num_features, coeff)
-            else:
-                bn = nn.BatchNorm2d(num_features)
-
-            return bn
+            return nn.BatchNorm2d(num_features)
 
         self.wrapped_bn = wrapped_bn
 
         def wrapped_conv(input_size, in_c, out_c, kernel_size, stride):
             padding = 1 if kernel_size == 3 else 0
-
-            conv = nn.Conv2d(in_c, out_c, kernel_size, stride, padding, bias=False)
-
-            if not spectral_conv:
-                return conv
-
-            if kernel_size == 1:
-                # use spectral norm fc, because bound are tight for 1x1 convolutions
-                wrapped_conv = spectral_norm_fc(conv, coeff, n_power_iterations)
-            else:
-                # Otherwise use spectral norm conv, with loose bound
-                input_dim = (in_c, input_size, input_size)
-                wrapped_conv = spectral_norm_conv(
-                    conv, coeff, input_dim, n_power_iterations
-                )
-
-            return wrapped_conv
+            return nn.Conv2d(in_c, out_c, kernel_size, stride, padding, bias=False)
 
         self.wrapped_conv = wrapped_conv
 
@@ -191,7 +164,6 @@ class WideResNet(nn.Module):
 
     def get_scale(self):
         return self.softplus(self.var_raw).clamp_min(1e-4)
-
 
     def forward(self, x):
         out = self.conv1(x)
