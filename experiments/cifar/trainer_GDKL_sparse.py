@@ -69,7 +69,7 @@ parser.add_argument('--multiplicative-factor', type=float,
                     default=1e-6,
                     help='multiplicative factor to scale the NNGP kernel to have an order of 100 at most. '
                          'For full cifar10 use 1e-6, and for full cifar100 1e-1')
-parser.add_argument("--jitter-val", type=float, default=0.0,
+parser.add_argument("--jitter-val", type=float, default=1e-3,
                     help="jitter to add to diagonal in infinite network; needed only for cifar100 a jitter of 1e-3")
 
 ##############################
