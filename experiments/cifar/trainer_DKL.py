@@ -102,7 +102,7 @@ ECE_module = ECELoss()
 ################################
 # get data
 ################################
-cifar10data = CIFARData(args.data_path)
+cifar10data = CIFARData('cifar10', args.data_path)
 train_loader, val_loader, test_loader = \
     cifar10data.get_loaders(val_pct=args.val_pct, train_pct=args.train_pct, shuffle_train=False,
                             batch_size=args.batch_size, test_batch_size=args.test_batch_size,

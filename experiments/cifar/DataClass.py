@@ -28,7 +28,7 @@ class CIFARData:
 
     def __init__(self, dataset='cifar10', data_dir=None):
         if data_dir is None:
-            data_dir = Path(os.getcwd()) / "data"
+            data_dir = Path(os.getcwd()) / "datasets"
 
         self.dataset = dataset
         self.data_dir = data_dir
