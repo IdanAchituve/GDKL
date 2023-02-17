@@ -59,7 +59,7 @@ class GPModelExact(ExactGP):
         # This module will scale the NN features so that they're nice values
         self.scale_to_bounds = gpytorch.utils.grid.ScaleToBounds(grid_bounds[0], grid_bounds[1])
 
-    def forward(self, x, final_layer=False):
+    def forward(self, x, *args, **kwargs):
         x = self.feature_extractor(x)
         if self.normalize_gp_input == 'scale':
             x = self.scale_to_bounds(x)  # Make the NN values "nice"
@@ -102,7 +102,7 @@ class MultiClassGPModelExact(ExactGP):
         # This module will scale the NN features so that they're nice values
         self.scale_to_bounds = gpytorch.utils.grid.ScaleToBounds(grid_bounds[0], grid_bounds[1])
 
-    def forward(self, x):
+    def forward(self, x, *args, **kwargs):
         x = x.view(*x.shape[:-1], *self.real_input_dims)
         x = self.feature_extractor(x)
         if self.normalize_gp_input == 'scale':
@@ -160,7 +160,7 @@ class GPModel(ApproximateGP):
         if kernel_function != 'SpectralMixtureKernel':
             self.covar_module = kernels.ScaleKernel(self.ker_fun, batch_shape=batch_shape)
 
-    def forward(self, x):
+    def forward(self, x, *args, **kwargs):
         mean_x = self.mean_module(x)
         covar_x = self.covar_module(x)
         return gpytorch.distributions.MultivariateNormal(mean_x, covar_x)
