@@ -55,12 +55,6 @@ parser.add_argument('--layers', type=lambda s: [int(item.strip()) for item in s.
 parser.add_argument("--activation", type=str, default='relu',
                     choices=['relu', 'elu'])
 parser.add_argument("--dropout-rate", type=float, default=0.0)
-parser.add_argument("--DUE", type=str2bool, default=False,
-                    help="learn \sigma_n?")
-parser.add_argument("--coeff", type=float, default=3., help="Spectral normalization coefficient")
-parser.add_argument(
-        "--n-power-iterations", default=1, type=int, help="Number of power iterations"
-    )
 
 ##############################
 #     Optimization args      #
@@ -81,7 +75,7 @@ set_seed(args.seed)
 
 device = get_device(cuda=int(args.gpus) >= 0, gpus=args.gpus)
 
-exp_name = f'DKL-UCI_DUE_{args.DUE}_{args.dataset}_seed_{args.seed}_num-samples-train_{args.num_samples_train}_' \
+exp_name = f'DKL-UCI_{args.dataset}_seed_{args.seed}_num-samples-train_{args.num_samples_train}_' \
            f'net_{args.network}_kernel_{args.kernel_function}'
 
 if args.exp_name != '':
@@ -115,10 +109,7 @@ likelihood.noise_covar.initialize(noise=torch.tensor([np.exp(args.noise_factor)]
 network = getattr(networks, args.network)(input_dim=data_dim,
                                           layers=args.layers,
                                           dropout_rate=args.dropout_rate,
-                                          activation=args.activation,
-                                          DUE=args.DUE,
-                                          coeff=args.coeff,
-                                          n_power_iterations=args.n_power_iterations).to(device)
+                                          activation=args.activation).to(device)
 
 # set ARD
 ARD_dim = None
