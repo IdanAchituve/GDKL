@@ -12,7 +12,7 @@ To run on Buzz and CTSlice, you first need to download the datasets from the rep
 "Semi-supervised Deep Kernel Learning: Regression with Unlabeled Data by Minimizing Predictive Variance"
 at the following [[link]](https://github.com/ermongroup/ssdkl)
 
-To run GDKL first got the required directory (either uci or cifar):
+To run GDKL first enter the required directory (either uci or cifar):
 ```bash
 cd experiments/dataset
 ```
