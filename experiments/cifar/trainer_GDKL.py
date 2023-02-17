@@ -50,7 +50,7 @@ parser.add_argument("--weight-var", type=float, default=5.0)
 parser.add_argument("--bias-var", type=float, default=0.2)
 parser.add_argument("--inf-widen-factor", type=int, default=5,
                     help="widen factor in infinite WRN")
-parser.add_argument("--beta", type=float, default=0.1, help="coef of data kl")
+parser.add_argument("--beta", type=float, default=1.0, help="coef of data kl")
 parser.add_argument("--neural-activation", type=str, default='Relu',
                     choices=['Relu', 'Sigmoid_like', 'Rbf', 'Sign'],
                     help="infinite network activation")
