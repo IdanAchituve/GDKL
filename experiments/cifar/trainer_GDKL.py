@@ -79,7 +79,7 @@ parser.add_argument("--test-batch-size", type=int, default=1024)
 parser.add_argument("--optimizer", type=str, default='sgd', choices=['adam', 'sgd'], help="learning rate")
 parser.add_argument("--lr", type=float, default=1e-2, help="learning rate")
 parser.add_argument("--kernel-lr", type=float, default=1e-2, help="learning rate of kernel params")
-parser.add_argument("--wd", type=float, default=5e-4, help="weight decay")
+parser.add_argument("--wd", type=float, default=0.0, help="weight decay")
 parser.add_argument("--dropout", type=float, default=0.3, help="dropout")
 parser.add_argument('--milestones', type=lambda s: [int(item.strip()) for item in s.split(',')],
                     default='3600,4800')
