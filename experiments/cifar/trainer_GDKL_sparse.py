@@ -64,7 +64,7 @@ parser.add_argument("--normalize", type=str2bool, default=False,
 parser.add_argument("--learn-ip-loc", type=str2bool, default=True,
                     help="learn inducing inputs locations")
 parser.add_argument("--num-ip", type=int, default=10, help="number of inducing points")
-parser.add_argument("--fragment-size", type=int, default=2500,
+parser.add_argument("--fragment-size", type=int, default=5000,
                     help='compute the NNGP kernel on submatrices of this dim. Must be a divisor of num_data'
                          'when num_data < fragment-size - computes the full kernel'
                          'Note! this may be slow, so when possible compute the full kernel.')
