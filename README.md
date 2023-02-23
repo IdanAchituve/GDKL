@@ -10,11 +10,24 @@ pip install -e .
 
 To run on Buzz and CTSlice, you first need to download the datasets from the repository of
 "Semi-supervised Deep Kernel Learning: Regression with Unlabeled Data by Minimizing Predictive Variance"
-at the following [[link]](https://github.com/ermongroup/ssdkl)
+at the following [[link]](https://github.com/ermongroup/ssdkl). Then place it under uci/datasets.
 
-To run GDKL first enter the required directory (either uci or cifar):
+To run GDKL first enter the required directory:
 ```bash
-cd experiments/dataset
+cd experiments/uci
+or
+cd experiments/cifar
 ```
-and then run trainer_GDKL.py or trainer_GDKL_sparse.py
+and then run trainer_GDKL.py or trainer_GDKL_sparse.py.
+
+### Citation
+Please cite this paper if you want to use it in your work,
+```
+@article{achituve2023guided,
+  title={Guided Deep Kernel Learning},
+  author={Achituve, Idan and Chechik, Gal and Fetaya, Ethan},
+  journal={arXiv preprint arXiv:2302.09574},
+  year={2023}
+}
+```
 
