@@ -38,17 +38,11 @@ class FCNet(nn.Module):
             raise ValueError("Activation is unknown")
 
     def forward(self, x):
-
-        rep = []
-        x = self.first(x)
-        rep.append(x.clone())
-
+        x = self.dropout(self.activation(self.first(x)))
         for layer in self.layers:
             x = self.dropout(self.activation(layer(x)))
-            rep.append(x.clone())
 
         x = self.last(x)
-        rep.append(x.clone())
         return x
 
 
