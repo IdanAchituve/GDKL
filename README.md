@@ -24,11 +24,12 @@ and then run trainer_GDKL.py or trainer_GDKL_sparse.py.
 ### Citation
 Please cite this paper if you want to use it in your work,
 ```
-@article{achituve2023guided,
+@inproceedings{achituve2023guided,
   title={Guided Deep Kernel Learning},
   author={Achituve, Idan and Chechik, Gal and Fetaya, Ethan},
-  journal={arXiv preprint arXiv:2302.09574},
-  year={2023}
+  booktitle={Uncertainty in Artificial Intelligence},
+  year={2023},
+  organization={PMLR}
 }
 ```
 
